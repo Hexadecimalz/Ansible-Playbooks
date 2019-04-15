@@ -1,0 +1,32 @@
+--- # Passwd Change to User
+####################################
+# Tested working with ansible 2.7.9 & python 2.7.5 & Centos 7
+# From Ansible examples: https://github.com/ansible/ansible-examples/blob/master/language_features/user_commands.yml
+# Usage:
+# 1. In Terminal Copy the hashed value of the modified command:
+#    `python -c 'import crypt; print crypt.crypt("A Good Password", "ChooseYourSalt")'`
+#     Example output: Ch9ycrt2u5Jn.
+#     OR run `python pass-crypt.py`
+# 2. Edit the playbook `vim passwd.yml` add the hashed value of step 1.
+# 3. Modify the hosts variable
+#    Choose your hosts:
+#     ansible all --list-hosts
+#     cat /etc/ansible/hosts
+# 4. Change name of the user you want to modify password for.
+# 5. Make a dry run: `ansible-playbook passwd.yml --check`
+# WARNING: Must hash password, or you cannot login to account. 
+# Ansible cannot identify plaintext from a hash, so it will warn about
+# unhashed password in the playbook.
+####################################
+- hosts: localhost
+  user: ansible
+  become: yes
+  gather_facts: false
+  vars:
+    password: Ch9ycrt2u5Jn.
+  tasks:
+    - name: Run Passwd on Existing User
+      user:
+        name: smokeybear
+        state: present
+        password: "{{password}}"
