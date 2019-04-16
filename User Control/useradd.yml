@@ -1,0 +1,14 @@
+--- # Add user and group
+#Password notes try pass-crypt.py or
+#`python -c 'import crypt; print crypt.crypt("A Good Password", "ChooseYourSalt")'`
+- hosts: localhost
+  user: ansible
+  become: true
+  gather_facts: false
+  tasks:
+    - name: Make User Add to Groups
+      user:
+        name: smokeybear
+        password: Ch9ycrt2u5Jn.
+        state: present
+        groups: wheel

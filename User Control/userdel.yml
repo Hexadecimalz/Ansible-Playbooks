@@ -1,0 +1,11 @@
+--- # Remove User
+- hosts: localhost
+  user: ansible
+  become: true
+  gather_facts: false
+  tasks:
+    - name: Remove A User
+      user:
+        name: smokeybear
+        state: absent
+        remove: yes
