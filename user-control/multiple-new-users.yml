@@ -1,0 +1,30 @@
+--- # Create Multiple Users
+- hosts: '{{ hosts }}'
+  become: yes
+  gather_facts: yes
+  connection: local
+  vars:
+    accounts:
+      - { uname: "grizz" , id: "221", desc: "Grizzly Bear"}
+      - { uname: "panpan", id: "222", desc: "Panda Bear"}
+      - { uname: "icebear" , id: "223", desc: "Ice Bear"}
+    sysgroups:
+      - docker
+  tasks:
+    - name: Add users
+      user:
+        name: "{{ item.uname }}"
+        uid: "{{ item.id }}"
+        comment: "{{ item.desc }}"
+        password: 
+        shell: /bin/bash
+        groups: "{{ sysgroups }}"
+        append: yes
+        state: present
+        update_password: always
+      with_items:
+        - "{{ accounts }}"
+    - name: Expire All Passwords
+      shell: chage -d 0 "{{ item.uname }}"
+      with_items:
+        - "{{ accounts }}"
