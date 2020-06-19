@@ -1,6 +1,5 @@
 --- # Remove User
 - hosts: '{{ hosts }}'
-  user: ansible
   become: true
   gather_facts: false
   tasks:
