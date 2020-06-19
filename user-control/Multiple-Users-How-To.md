@@ -12,10 +12,11 @@ Edit the file with help from the table below.
 
 ## Create a password hash
 
+Use the follow ad-hoc command in the terminal to create a password hash. By default the password is expired on the user account, and the user will be required to set a new password after first login. 
+
 `ansible all -i localhost, -m debug -a "msg={{ 'mypassword' | password_hash('sha512', 'mysecretsalt') }}"`
 
-Copy the password hash into the password line make sure it's quoted. Keep in mind, the user will be forced to update the password again
-on their first login. Set a good password anyways. 
+Copy the password hash into the password line make sure it's quoted. 
 
 ## Creating Groups
 
