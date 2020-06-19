@@ -8,5 +8,4 @@ Some playbooks and lists of reminder commands.
 
 ## Notes
 
-Depending on the scenario turning off SELinux may be necessary for testing
-playbooks if any problems come up.
+
