@@ -10,7 +10,7 @@ Edit the file with help from the table below.
 | desc           | Comment (For Example, John Smith)                                                                  |
 | member         | Set groups for the user. Wheel gives sudo access, remove sudo by specifying no wheel group present |
 
-## Create a password hash
+## Create a Password Hash
 
 Use the follow ad-hoc command in the terminal to create a password hash. By default the password is expired on the user account, and the user will be required to set a new password after first login. 
 
