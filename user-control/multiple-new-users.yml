@@ -40,5 +40,5 @@
     - name: Wheel Group Make Sudo
       copy:
         content: '%wheel ALL=(ALL:ALL) ALL'
-        dest: /etc/sudoers.d/wheel_nopasswd
+        dest: /etc/sudoers.d/wheel_permission
         mode: 0440
