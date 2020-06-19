@@ -1,4 +1,5 @@
 # How to Use the `multiple-new-users.yml` Playbook
+Easy Download `wget https://raw.githubusercontent.com/Hexadecimalz/Ansible-Playbooks/master/user-control/multiple-new-users.yml`
 ## Edit the Playbook First
 Edit the file with help from the table below. 
 
