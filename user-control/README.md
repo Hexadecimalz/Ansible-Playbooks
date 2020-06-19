@@ -1,5 +1,5 @@
 # User Management Playbooks 
-## How to Use the `multiple-new-users.yml` Playbook
+## 👩🧑🏽👩 How to Use the `multiple-new-users.yml` Playbook
 Easy Download `wget https://raw.githubusercontent.com/Hexadecimalz/Ansible-Playbooks/master/user-control/multiple-new-users.yml`
 ### Edit the Playbook First
 Edit the file with help from the table below. 
@@ -28,6 +28,6 @@ To check run this command in the terminal `groups`
 1. To install Ansible run `sudo apt install ansible`
 1. To run the playbook `sudo ansible-playbook multiple-new-users.yml -e"hosts=localhost"`
 
-## How to use the `remove-user.yml` Playbook 
+## 👤 How to use the `remove-user.yml` Playbook 
 1. Download `wget https://raw.githubusercontent.com/Hexadecimalz/Ansible-Playbooks/master/user-control/remove-user.yml`
 1. Run `sudo ansible-playbook remove-user.yml -e"hosts=localhost"`
