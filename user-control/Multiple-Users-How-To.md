@@ -25,7 +25,5 @@ in individual plays. You cannot add a user to a group that does not exist.
 
 ## Run the Playbook (make sure Ansible is installed on the machine) 
 
-`sudo ansible-playbook multiple-new-users.yml -e"hosts=localhost"`
-
-If you run the script multiple times it will always update the user password, so you may want to change this if you need to run it again
-to modify a user account. 
+1. To install Ansible run `sudo apt install ansible`
+1. To run the playbook `sudo ansible-playbook multiple-new-users.yml -e"hosts=localhost"`
