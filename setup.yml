@@ -1,0 +1,25 @@
+---
+- name: Setup SSH Key, Rename Host, Create Ansible User
+  hosts: '{{ client }}'
+  become: yes
+  become_user: root
+  become_method: sudo
+  tasks:
+  - name: Create User
+    user:
+      name: ansible
+      groups: wheel
+      password: ""
+      append: yes
+      state: present
+      shell: /bin/bash
+  - name: Set Hostname
+    ansible.builtin.hostname:
+      name: '{{ myname }}'
+  - name: Copy Key
+    authorized_key:
+      user: ansible
+      state: present
+      key: "{{ lookup('file','/home/ansible/.ssh/id_rsa.pub') }}"
+      path: /home/ansible/.ssh/authorized_keys
+      manage_dir: yes

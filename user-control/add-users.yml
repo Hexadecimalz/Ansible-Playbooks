@@ -1,0 +1,35 @@
+--- # Create Multiple Users
+- hosts: '{{ host }}'
+  gather_facts: yes
+  vars:
+    accounts:
+      - { uname: "grizz" , id: 221, desc: "Grizzly Bear", member: "data, bears"}
+      - { uname: "panpan", id: 222, desc: "Panda Bear", member: "data, bears"}
+      - { uname: "icebear" , id: 223, desc: "Ice Bear", member: "data, bears"}
+    sysgroups:
+      - groupname: data
+      - groupname: bears
+  tasks:
+    - name: Create Groups
+      group:
+        name: "{{ item.groupname }}"
+        state: present
+      with_items:
+        - "{{ sysgroups }}"
+    - name: Add users
+      user:
+        name: "{{ item.uname }}"
+        uid: "{{ item.id }}"
+        comment: "{{ item.desc }}"
+        password: "$6$mysecretsalt$isXX3ORnc1X6T38bPk2hwv1R4utHnhl0/kaghIJAA2PPS9I38sJfpnhuXBFIbSSoYHnCXTN02vNbiuOLJfR8g."
+        shell: /bin/bash
+        groups: "{{ item.member }}"
+        append: yes
+        state: present
+        update_password: always
+      with_items:
+        - "{{ accounts }}"
+    - name: Expire password prompt user to make a new one
+      shell: chage -d 0 "{{ item.uname }}"
+      with_items:
+        - "{{ accounts }}"

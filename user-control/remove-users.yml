@@ -1,0 +1,16 @@
+--- # Remove User
+- name: Remove multiple users
+  hosts: "{{ host }}"
+  vars:
+    acctremove:
+     - user: panpan
+     - user: grizz
+     - user: icebear
+  tasks:
+    - name: remove users
+      user:
+        name: "{{ item.user }}"
+        state: absent
+        remove: yes
+      with_items:
+        - "{{ acctremove }}"
