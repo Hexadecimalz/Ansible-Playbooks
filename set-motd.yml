@@ -1,0 +1,12 @@
+---
+- name: Set Motd on host
+  hosts: "{{ client }}"
+  become: true
+  tasks:
+    - name: Copy Motd File 
+      copy:
+        src: "{{ myfile }}" 
+        dest: /etc/motd    
+        owner: root
+        group: root
+        mode: '0644'
