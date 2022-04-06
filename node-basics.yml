@@ -1,0 +1,13 @@
+---
+- hosts: all
+  tasks:
+    - name: Find Release
+      setup:
+        filter: "ansible_os_family"
+    - name: Collect Node Names
+      setup:
+        filter: "ansible_nodename"
+    - name: OS Family
+      debug: var=ansible_os_family
+    - name: Node Names
+      debug: var=ansible_nodename
