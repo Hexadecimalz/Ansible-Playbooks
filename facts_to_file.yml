@@ -1,0 +1,19 @@
+- hosts: all
+  become: true
+  serial: 1
+  tasks:
+    - name: See if bash exists
+      shell: which bash 
+      register: datais
+      ignore_errors: true
+    - name: local action
+      lineinfile: 
+        line: "{{ item }}" 
+        path: /home/ansible/test.csv  
+      loop:
+        - "{{ ansible_hostname }},{{ ansible_default_ipv4.address }},{{ansible_distribution}},{{ datais.stdout }}"
+      delegate_to: 127.0.0.1
+
+
+
+
